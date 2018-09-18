@@ -33,18 +33,11 @@ namespace MinArea
             {
                 for (int i = k; i < _set.Length; ++i)
                 {
-                    Swap(ref _set[i], ref _set[k]);
+                    Utils.Swap(ref _set[i], ref _set[k]);
                     GenerateRec(k + 1);
-                    Swap(ref _set[i], ref _set[k]);
+                    Utils.Swap(ref _set[i], ref _set[k]);
                 }
             }
-        }
-
-        private void Swap(ref T a, ref T b)
-        {
-            T tmp = a;
-            a = b;
-            b = tmp;
         }
     }
 }

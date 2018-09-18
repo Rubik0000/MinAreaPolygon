@@ -17,7 +17,7 @@ namespace MinArea
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             MainForm form = new MainForm();
-            Presenter presenter = new Presenter(form);
+            Presenter presenter = new Presenter(form, new PolygonActions());
             Application.Run(form);
         }
     }

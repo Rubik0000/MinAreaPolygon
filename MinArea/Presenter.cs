@@ -10,60 +10,115 @@ namespace MinArea
 {
     class Presenter
     {
-        private Graphics _graphics;
-        private IMainForm _mainForm;
-        private LinkedList<Point> _tops;
+        private static readonly int MIN_COUNT = 3;
+        private static readonly int MAX_COUNT = 10;
+        private static Color _color = Color.Black;
+        private static int _pointSize = 3;
+        private static string _fontFamily = "Arial";
+        private static int _fontSize = 10;
+        private static Pen _pen = new Pen(_color);
+        private static Font _font = new Font(_fontFamily, _fontSize);
 
-        public Presenter(IMainForm form)
+        private string[] _pointNames;
+        private Graphics _graphics;
+        private Random _random = new Random();
+        private IMainForm _mainForm;
+        private IPolygonActions _polAct;
+
+        public Presenter(IMainForm form, IPolygonActions polAct)
         {
             _mainForm = form;
+            _polAct = polAct;
             _graphics = Graphics.FromHwnd(_mainForm.ForGraphics);
-            _tops = new LinkedList<Point>();
+            _pointNames = new string[26];
+            for (int i = 0; i < 26; ++i)
+            {
+                _pointNames[i] = ((char)(i + 'A')).ToString();
+            }
 
             _mainForm.AddPoint += AddPointEvent;
-            _mainForm.GetPolygon += GetPolygonEvent;
+            _mainForm.RemovePoint += RemovePointEvent;
             _mainForm.Clear += ClearEvent;
+            _mainForm.RandomPoints += ClearEvent;
+            _mainForm.RandomPoints += RandomPointsEvent;
+
+            _mainForm.GetPolygon += GetPolygonEvent;
+
+            _mainForm.Help += HelpEvent;
+        }
+
+        private void HelpEvent(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RemovePointEvent(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RandomPointsEvent(object sender, EventArgs e)
+        {
+            if (_mainForm.CountRandomPoints > MAX_COUNT)
+                _mainForm.CountRandomPoints = MAX_COUNT;
+            for (int i = 0; i < _mainForm.CountRandomPoints; ++i)
+            {
+                int x = _random.Next(0, _mainForm.WorkSpaceWidth - _fontSize);
+                int y = _random.Next(_fontSize, _mainForm.WorkSpaceHeight);
+                Point p = new Point(x, y);
+                _polAct.AddTop(p);
+                DrawPoint(p);
+            }
         }
 
         private void AddPointEvent(object sender, MouseEventArgs e)
         {
-            _tops.AddLast(new Point(e.X, e.Y));
-            _graphics.DrawEllipse(new Pen(Color.Black), e.X, e.Y, 2, 2);
+            if (_polAct.CountTops() == MAX_COUNT)
+            {
+                Messages.ShowWarning("Невозможно добавить больше точек");
+                return;
+            }
+            Point p = new Point(e.X, e.Y);
+            _polAct.AddTop(p);
+            DrawPoint(p);
         }
 
         private void GetPolygonEvent(object sender, EventArgs e)
         {
-            int minArea = int.MaxValue;
-            Polygon minPol = null;
-
-            Point[] points = _tops.ToArray();
-            Point[] perm = new Point[points.Length - 1];
-            Array.Copy(points, 1, perm, 0, perm.Length);
-            var p = new Permutations<Point>();
-            Point[] polTops = new Point[perm.Length + 1];
-            polTops[0] = points[0];
-
-            p.Generate(perm, per => {
-
-                Array.Copy(perm, 0, polTops, 1, perm.Length);
-                var pol = Polygon.CreatePolygon(polTops);
-                if (pol == null) return;
-                int area = pol.GetArea();
-                if (area < minArea)
-                {
-                    minArea = area;
-                    minPol = pol;
-                }
-            });
-            minPol.Draw(_graphics, new Pen(Color.Black));
-            _mainForm.setArea(minArea);
+            if (_polAct.CountTops() < MIN_COUNT)
+            {
+                Messages.ShowWarning("Для построения многоугольника " +
+                    "необходимо минимум 3 точки");
+                return;
+            }
+            var minPol = _polAct.GetMinAreaPolygon();
+            if (minPol != null)
+            {
+                minPol.Draw(_graphics, _pen);
+                _mainForm.setArea(minPol.GetArea());
+            }
+            else
+            {
+                Messages.ShowError("Невозможно построить многоугольник");
+            }
         }
 
         private void ClearEvent(object sender, EventArgs e)
         {
-            _tops.Clear();
+            _polAct.ClearTops();
             _graphics.Clear(_mainForm.Background);
             _mainForm.setArea(0);
+        }
+
+        private void DrawPoint(Point p)
+        {
+            _graphics.DrawEllipse(_pen, p.X, p.Y, _pointSize, _pointSize);
+            _graphics.DrawString(
+                _pointNames[_polAct.CountTops() - 1],
+                _font, 
+                _pen.Brush, 
+                p.X - _fontSize / 2, 
+                p.Y - 1.5f * _fontSize);
         }
     }
 }

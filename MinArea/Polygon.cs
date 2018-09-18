@@ -7,12 +7,7 @@ using System.Drawing;
 
 namespace MinArea
 {
-    public interface IDrawable
-    {
-        void Draw(Graphics grp, Pen pen);
-    }
-
-    class Polygon : IDrawable
+    public class Polygon : IDrawable
     {
         private Edge[] _edges;
         private Point[] _tops;
@@ -35,7 +30,7 @@ namespace MinArea
             {
                 for (int j = 0; j < polygon._edges.Length; ++j)
                 {
-                    if (!Edge.IsAdjacent(polygon._edges[i], polygon._edges[j]) &&
+                    if (i != j && !Edge.IsAdjacent(polygon._edges[i], polygon._edges[j]) &&
                         Edge.Interect(polygon._edges[i], polygon._edges[j]))
                     {
                         return null;

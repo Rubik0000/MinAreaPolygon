@@ -15,8 +15,12 @@ namespace MinArea
         IntPtr ForGraphics { get; }
         void setArea(int area);
         Color Background { get; }
+        int CountRandomPoints { get; set; }
+        int WorkSpaceWidth { get; }
+        int WorkSpaceHeight { get; }
         event MouseEventHandler AddPoint;
         event MouseEventHandler RemovePoint;
+        event EventHandler RandomPoints;
         event EventHandler GetPolygon;
         event EventHandler Clear;
         event EventHandler Help;
@@ -33,11 +37,22 @@ namespace MinArea
 
         public Color Background => pctrBxMain.BackColor;
 
+        public int CountRandomPoints
+        {
+            get => (int) nmrcRandom.Value;
+            set => nmrcRandom.Value = value;
+        }
+
+        public int WorkSpaceWidth => pctrBxMain.Width;
+
+        public int WorkSpaceHeight => pctrBxMain.Height;
+
         public event MouseEventHandler AddPoint;
         public event MouseEventHandler RemovePoint;
         public event EventHandler GetPolygon;
         public event EventHandler Clear;
         public event EventHandler Help;
+        public event EventHandler RandomPoints;
 
         public void setArea(int area) => 
             txtBxArea.Text = area.ToString();
@@ -55,12 +70,24 @@ namespace MinArea
             }
         }
 
-        private void btnFindPolygon_Click(object sender, EventArgs e) =>
+        private void btnFindPolygon_Click(object sender, EventArgs e)
+        {
             GetPolygon?.Invoke(sender, e);
+        }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             Clear?.Invoke(sender, e);
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            Help?.Invoke(sender, e);
+        }
+
+        private void btnRandom_Click(object sender, EventArgs e)
+        {
+            RandomPoints?.Invoke(sender, e);
         }
     }
 }

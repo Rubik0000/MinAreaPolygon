@@ -68,6 +68,7 @@
             this.btnHelp.TabIndex = 2;
             this.btnHelp.Text = "Помощь";
             this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // txtBxArea
             // 
@@ -94,6 +95,7 @@
             this.btnRandom.TabIndex = 5;
             this.btnRandom.Text = "Случайные точки";
             this.btnRandom.UseVisualStyleBackColor = true;
+            this.btnRandom.Click += new System.EventHandler(this.btnRandom_Click);
             // 
             // nmrcRandom
             // 
