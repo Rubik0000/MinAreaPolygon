@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace MinArea
 {
+    /// <summary>
+    /// The public interface of the main form
+    /// </summary>
     public interface IMainForm
     {
         IntPtr ForGraphics { get; }
@@ -19,7 +22,6 @@ namespace MinArea
         int WorkSpaceWidth { get; }
         int WorkSpaceHeight { get; }
         event MouseEventHandler AddPoint;
-        event MouseEventHandler RemovePoint;
         event EventHandler RandomPoints;
         event EventHandler GetPolygon;
         event EventHandler Clear;
@@ -48,7 +50,6 @@ namespace MinArea
         public int WorkSpaceHeight => pctrBxMain.Height;
 
         public event MouseEventHandler AddPoint;
-        public event MouseEventHandler RemovePoint;
         public event EventHandler GetPolygon;
         public event EventHandler Clear;
         public event EventHandler Help;
@@ -61,33 +62,19 @@ namespace MinArea
         private void pctrBxMain_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
-            {
                 AddPoint?.Invoke(sender, e);
-            }
-            else if (e.Button == MouseButtons.Right)
-            {
-                RemovePoint?.Invoke(sender, e);
-            }
         }
 
-        private void btnFindPolygon_Click(object sender, EventArgs e)
-        {
+        private void btnFindPolygon_Click(object sender, EventArgs e) =>
             GetPolygon?.Invoke(sender, e);
-        }
 
-        private void btnClear_Click(object sender, EventArgs e)
-        {
+        private void btnClear_Click(object sender, EventArgs e) =>
             Clear?.Invoke(sender, e);
-        }
 
-        private void btnHelp_Click(object sender, EventArgs e)
-        {
+        private void btnHelp_Click(object sender, EventArgs e) =>
             Help?.Invoke(sender, e);
-        }
 
-        private void btnRandom_Click(object sender, EventArgs e)
-        {
+        private void btnRandom_Click(object sender, EventArgs e) =>
             RandomPoints?.Invoke(sender, e);
-        }
     }
 }

@@ -7,6 +7,9 @@ using System.Drawing;
 
 namespace MinArea
 {
+    /// <summary>
+    /// Represents an polygon
+    /// </summary>
     public class Polygon : IDrawable
     {
         private Edge[] _edges;
@@ -14,6 +17,15 @@ namespace MinArea
 
         protected Polygon() {}
 
+        /// <summary>
+        /// A factory method that creates an polygon if it is possible
+        /// and returns null if it is not
+        /// </summary>
+        /// <param name="tops">
+        /// Tops of a polygon on which it needs to get polygon
+        /// Points must be in order they will be linked in edges
+        /// </param>
+        /// <returns>A created polygon or null</returns>
         public static Polygon CreatePolygon(Point[] tops)
         {
             Polygon polygon = new Polygon();
@@ -31,7 +43,7 @@ namespace MinArea
                 for (int j = 0; j < polygon._edges.Length; ++j)
                 {
                     if (i != j && !Edge.IsAdjacent(polygon._edges[i], polygon._edges[j]) &&
-                        Edge.Interect(polygon._edges[i], polygon._edges[j]))
+                        Edge.Intersect(polygon._edges[i], polygon._edges[j]))
                     {
                         return null;
                     }
@@ -40,6 +52,9 @@ namespace MinArea
             return polygon;
         }
 
+        /// <summary>
+        /// Overload
+        /// </summary>
         public void Draw(Graphics grp, Pen pen)
         {
             foreach(var ed in _edges)
@@ -48,6 +63,11 @@ namespace MinArea
             }
         }
 
+        /// <summary>
+        /// Returns the area of the polygon
+        /// using Gauss's area formula
+        /// </summary>
+        /// <returns>The area of the polygon</returns>
         public int GetArea()
         {
             int s1 = 0;

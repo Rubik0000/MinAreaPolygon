@@ -20,6 +20,8 @@ namespace MinArea
         private static Font _font = new Font(_fontFamily, _fontSize);
 
         private string[] _pointNames;
+        private int _pNamesInd = 0;
+        private bool _wasDrawn = false;
         private Graphics _graphics;
         private Random _random = new Random();
         private IMainForm _mainForm;
@@ -37,7 +39,6 @@ namespace MinArea
             }
 
             _mainForm.AddPoint += AddPointEvent;
-            _mainForm.RemovePoint += RemovePointEvent;
             _mainForm.Clear += ClearEvent;
             _mainForm.RandomPoints += ClearEvent;
             _mainForm.RandomPoints += RandomPointsEvent;
@@ -49,12 +50,10 @@ namespace MinArea
 
         private void HelpEvent(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
-        }
-
-        private void RemovePointEvent(object sender, MouseEventArgs e)
-        {
-            throw new NotImplementedException();
+            Messages.ShowMessage(
+                "ЛКМ - установка вершины\r\n" +
+                "При нажатии на кнопку \"Найти многоуг.\" будет построен" +
+                "многоугольник с минимальной площадью");
         }
 
         private void RandomPointsEvent(object sender, EventArgs e)
@@ -67,7 +66,8 @@ namespace MinArea
                 int y = _random.Next(_fontSize, _mainForm.WorkSpaceHeight);
                 Point p = new Point(x, y);
                 _polAct.AddTop(p);
-                DrawPoint(p);
+                DrawPoint(p, _pen);
+                ++_pNamesInd;
             }
         }
 
@@ -78,9 +78,19 @@ namespace MinArea
                 Messages.ShowWarning("Невозможно добавить больше точек");
                 return;
             }
+            if (_wasDrawn)
+            {
+                ClearWorkSpace();
+                foreach(Point point in _polAct)
+                {
+                    DrawPoint(point, _pen);
+                    ++_pNamesInd;
+                }
+            }
             Point p = new Point(e.X, e.Y);
             _polAct.AddTop(p);
-            DrawPoint(p);
+            DrawPoint(p, _pen);
+            ++_pNamesInd;
         }
 
         private void GetPolygonEvent(object sender, EventArgs e)
@@ -96,6 +106,7 @@ namespace MinArea
             {
                 minPol.Draw(_graphics, _pen);
                 _mainForm.setArea(minPol.GetArea());
+                _wasDrawn = true;
             }
             else
             {
@@ -106,17 +117,24 @@ namespace MinArea
         private void ClearEvent(object sender, EventArgs e)
         {
             _polAct.ClearTops();
-            _graphics.Clear(_mainForm.Background);
-            _mainForm.setArea(0);
+            ClearWorkSpace();
         }
 
-        private void DrawPoint(Point p)
+        private void ClearWorkSpace()
         {
-            _graphics.DrawEllipse(_pen, p.X, p.Y, _pointSize, _pointSize);
+            _graphics.Clear(_mainForm.Background);
+            _mainForm.setArea(0);
+            _wasDrawn = false;
+            _pNamesInd = 0;
+        }
+
+        private void DrawPoint(Point p, Pen pen)
+        {
+            _graphics.DrawEllipse(pen, p.X, p.Y, _pointSize, _pointSize);
             _graphics.DrawString(
-                _pointNames[_polAct.CountTops() - 1],
+                _pointNames[_pNamesInd],
                 _font, 
-                _pen.Brush, 
+                pen.Brush, 
                 p.X - _fontSize / 2, 
                 p.Y - 1.5f * _fontSize);
         }

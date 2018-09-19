@@ -7,52 +7,58 @@ using System.Threading.Tasks;
 
 namespace MinArea
 {
+    /// <summary>
+    /// Represents an edge between points
+    /// </summary>
     class Edge : IDrawable
     {
+        /// <summary>
+        /// The first point
+        /// </summary>
         public Point P1 { get; private set; }
+
+        /// <summary>
+        /// The second point
+        /// </summary>
         public Point P2 { get; private set; }
 
+        /// <summary>
+        /// A constructor
+        /// </summary>
+        /// <param name="p1">A first point</param>
+        /// <param name="p2">A second point</param>
         public Edge(Point p1, Point p2)
         {
             P1 = p1;
             P2 = p2;
         }
 
-        private static bool EqualPoints(Point p1, Point p2) =>
-            p1.X == p2.X && p1.Y == p2.Y;
-        
-
+        /// <summary>
+        /// Checks whether two edges are adjacent
+        /// </summary>
+        /// <param name="ed1">The first edge</param>
+        /// <param name="ed2">The second edge</param>
+        /// <returns>True if they are adjacent or false if they are not</returns>
         public static bool IsAdjacent(Edge ed1, Edge ed2) =>
-            EqualPoints(ed1.P1, ed2.P1) ||
-            EqualPoints(ed1.P1, ed2.P2) ||
-            EqualPoints(ed1.P2, ed2.P1) ||
-            EqualPoints(ed1.P2, ed2.P2);
+            Utils.EqualPoints(ed1.P1, ed2.P1) ||
+            Utils.EqualPoints(ed1.P1, ed2.P2) ||
+            Utils.EqualPoints(ed1.P2, ed2.P1) ||
+            Utils.EqualPoints(ed1.P2, ed2.P2);
 
-        public static bool Interect(Edge ed1, Edge ed2) =>
-            Interect(ed1.P1, ed1.P2, ed2.P1, ed2.P2);
+        /// <summary>
+        /// Checks whether two edges intersect
+        /// It implies that they are not adjacent
+        /// </summary>
+        /// <param name="ed1"></param>
+        /// <param name="ed2"></param>
+        /// <returns>True if they intersect or false if they don't</returns>
+        public static bool Intersect(Edge ed1, Edge ed2) =>
+            Utils.Interect(ed1.P1, ed1.P2, ed2.P1, ed2.P2);
 
-        private static bool Interect(Point a1, Point a2, Point b1, Point b2)
-        {
-            if (a1.X >= a2.X)
-                Utils.Swap(ref a1, ref a2);
-            if (b1.X >= b2.X)
-                Utils.Swap(ref b1, ref b2);
-            int v1 = Math.Sign((long)(b2.X - b1.X) * (a1.Y - b1.Y) -
-                     (long)(b2.Y - b1.Y) * (a1.X - b1.X));
-
-            int v2 = Math.Sign((long)(b2.X - b1.X) * (a2.Y - b1.Y) -
-                     (long)(b2.Y - b1.Y) * (a2.X - b1.X));
-
-            int v3 = Math.Sign((long)(a2.X - a1.X) * (b1.Y - a1.Y) -
-                     (long)(a2.Y - a1.Y) * (b1.X - a1.X));
-
-            int v4 = Math.Sign((long)(a2.X - a1.X) * (b2.Y - a1.Y) -
-                     (long)(a2.Y - a1.Y) * (b2.X - a1.X));
-            return v1 * v2 < 0 && v3 * v4 < 0;
-        }
-
+        /// <summary>
+        /// Overload
+        /// </summary>     
         public void Draw(Graphics grp, Pen pen) =>
             grp.DrawLine(pen, P1, P2);
-        
     }
 }

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Collections;
 
 namespace MinArea
 {
-    public interface IPolygonActions
+    public interface IPolygonActions : IEnumerable
     {
         Polygon GetMinAreaPolygon();
         void AddTop(Point p);
@@ -36,7 +37,7 @@ namespace MinArea
         public bool ContainTop(Point p) => _setOfTops.Contains(p);
 
         public bool RemoveTop(Point p) => _setOfTops.Remove(p);
-
+        
         public void ClearTops() => _setOfTops.Clear();
 
         public int CountTops() => _setOfTops.Count;
@@ -63,5 +64,15 @@ namespace MinArea
             });
             return minPol;
         }
+
+        public IEnumerator GetEnumerator()
+        {
+            foreach(var p in _setOfTops)
+            {
+                yield return p;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }
