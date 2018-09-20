@@ -36,6 +36,7 @@
             this.btnRandom = new System.Windows.Forms.Button();
             this.nmrcRandom = new System.Windows.Forms.NumericUpDown();
             this.btnClear = new System.Windows.Forms.Button();
+            this.lblCountRandTops = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pctrBxMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrcRandom)).BeginInit();
             this.SuspendLayout();
@@ -100,6 +101,11 @@
             // nmrcRandom
             // 
             this.nmrcRandom.Location = new System.Drawing.Point(545, 157);
+            this.nmrcRandom.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.nmrcRandom.Minimum = new decimal(new int[] {
             3,
             0,
@@ -124,12 +130,22 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // lblCountRandTops
+            // 
+            this.lblCountRandTops.AutoSize = true;
+            this.lblCountRandTops.Location = new System.Drawing.Point(545, 141);
+            this.lblCountRandTops.Name = "lblCountRandTops";
+            this.lblCountRandTops.Size = new System.Drawing.Size(91, 13);
+            this.lblCountRandTops.TabIndex = 8;
+            this.lblCountRandTops.Text = "Кол. случ. точек:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(676, 395);
+            this.Controls.Add(this.lblCountRandTops);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.nmrcRandom);
             this.Controls.Add(this.btnRandom);
@@ -158,6 +174,7 @@
         private System.Windows.Forms.Button btnRandom;
         private System.Windows.Forms.NumericUpDown nmrcRandom;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label lblCountRandTops;
     }
 }
 

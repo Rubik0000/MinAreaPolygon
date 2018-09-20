@@ -133,5 +133,21 @@ namespace MinArea
         /// <param name="e"></param>
         private void btnRandom_Click(object sender, EventArgs e) =>
             RandomPoints?.Invoke(sender, e);
+
+        /// <summary>
+        /// The hot key
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="keyData"></param>
+        /// <returns></returns>
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                GetPolygon(this, EventArgs.Empty);
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }
