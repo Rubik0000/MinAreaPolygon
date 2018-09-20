@@ -8,40 +8,87 @@ using System.Collections;
 
 namespace MinArea
 {
+    /// <summary>
+    /// An interface provides actions above polygons
+    /// </summary>
     public interface IPolygonActions : IEnumerable
     {
+        /// <summary>
+        /// Gets a polygon with min area from existing held tops
+        /// </summary>
+        /// <returns>The polygon or null if it is impossible to create</returns>
         Polygon GetMinAreaPolygon();
+
+        /// <summary>
+        /// Add a tops to the set
+        /// </summary>
+        /// <param name="p">A point need to add</param>
         void AddTop(Point p);
+
+        /// <summary>
+        /// Removes a top
+        /// </summary>
+        /// <param name="p">A point need to remove</param>
+        /// <returns>True if removing was succesful or false if it was not</returns>
         bool RemoveTop(Point p);
+
+        /// <summary>
+        /// Checks whether a top is held
+        /// </summary>
+        /// <param name="p">The top need to check</param>
+        /// <returns>True if the set has the top</returns>
         bool ContainTop(Point p);
+
+        /// <summary>
+        /// Clears the set of tops
+        /// </summary>
         void ClearTops();
+
+        /// <summary>
+        /// Gets the number of held tops
+        /// </summary>
+        /// <returns>The number of the tops</returns>
         int CountTops();
     }
 
-    class PolygonActions : IPolygonActions
+    public class PolygonActions : IPolygonActions
     {
+        // the seg of tops
         private LinkedList<Point> _setOfTops;
 
+        /// <summary>
+        /// A constructor, the set is empty
+        /// </summary>
         public PolygonActions()
         {
             _setOfTops = new LinkedList<Point>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="col">A collection of the tops</param>
         public PolygonActions(IEnumerable<Point> col)
         {
             _setOfTops = new LinkedList<Point>(col);
         }
 
+        /// <summary>Overload</summary>
         public void AddTop(Point p) => _setOfTops.AddLast(p);
 
+        /// <summary>Overload</summary>
         public bool ContainTop(Point p) => _setOfTops.Contains(p);
 
+        /// <summary>Overload</summary>
         public bool RemoveTop(Point p) => _setOfTops.Remove(p);
-        
+
+        /// <summary>Overload</summary>
         public void ClearTops() => _setOfTops.Clear();
 
+        /// <summary>Overload</summary>
         public int CountTops() => _setOfTops.Count;
 
+        /// <summary>Overload</summary>
         public Polygon GetMinAreaPolygon()
         {
             var polTops = _setOfTops.ToArray();

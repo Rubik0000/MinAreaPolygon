@@ -8,32 +8,55 @@ using System.Windows.Forms;
 
 namespace MinArea
 {
+    /// <summary>
+    /// The presenter class
+    /// </summary>
     class Presenter
     {
+        // min number of tops
         private static readonly int MIN_COUNT = 3;
+        // max number of tops
         private static readonly int MAX_COUNT = 10;
+        // the color of the figure
         private static Color _color = Color.Black;
+        // point size in px
         private static int _pointSize = 3;
+        // the font family of a point letter
         private static string _fontFamily = "Arial";
+        // the font size of a point letter
         private static int _fontSize = 10;
+        // 
         private static Pen _pen = new Pen(_color);
+        //
         private static Font _font = new Font(_fontFamily, _fontSize);
 
+        // the set of the names of the tops 
         private string[] _pointNames;
+        // the index of the current name of the top
         private int _pNamesInd = 0;
+        // the flag whether a figure was drawn
         private bool _wasDrawn = false;
+        // the component to draw figures
         private Graphics _graphics;
+        // random generator
         private Random _random = new Random();
+        // main form (view)
         private IMainForm _mainForm;
+        //
         private IPolygonActions _polAct;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="form"></param>
+        /// <param name="polAct"></param>
         public Presenter(IMainForm form, IPolygonActions polAct)
         {
             _mainForm = form;
             _polAct = polAct;
             _graphics = Graphics.FromHwnd(_mainForm.ForGraphics);
-            _pointNames = new string[26];
-            for (int i = 0; i < 26; ++i)
+            _pointNames = new string[MAX_COUNT];
+            for (int i = 0; i < MAX_COUNT - 1; ++i)
             {
                 _pointNames[i] = ((char)(i + 'A')).ToString();
             }
@@ -105,7 +128,7 @@ namespace MinArea
             if (minPol != null)
             {
                 minPol.Draw(_graphics, _pen);
-                _mainForm.setArea(minPol.GetArea());
+                _mainForm.SetArea(minPol.GetArea());
                 _wasDrawn = true;
             }
             else
@@ -123,7 +146,7 @@ namespace MinArea
         private void ClearWorkSpace()
         {
             _graphics.Clear(_mainForm.Background);
-            _mainForm.setArea(0);
+            _mainForm.SetArea(0);
             _wasDrawn = false;
             _pNamesInd = 0;
         }

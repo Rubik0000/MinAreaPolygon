@@ -7,8 +7,17 @@ using System.Drawing;
 
 namespace MinArea
 {
+    /// <summary>
+    /// The help class
+    /// </summary>
     public static class Utils
     {
+        /// <summary>
+        /// Swaps two values
+        /// </summary>
+        /// <typeparam name="T">Any type of the values</typeparam>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
         public static void Swap<T>(ref T a, ref T b)
         {
             T tmp = a;
@@ -26,19 +35,19 @@ namespace MinArea
             p1.X == p2.X && p1.Y == p2.Y;
 
         /// <summary>
-        /// 
+        /// Checks whether one line segments intersects another
         /// </summary>
-        /// <param name="a1"></param>
-        /// <param name="a2"></param>
-        /// <param name="b1"></param>
-        /// <param name="b2"></param>
-        /// <returns></returns>
-        public static bool Interect(Point a1, Point a2, Point b1, Point b2)
+        /// <param name="a1">The left point of the first line segment</param>
+        /// <param name="a2">The right point of the first line segment</param>
+        /// <param name="b1">The left point of the second line segment</param>
+        /// <param name="b2">The left point of the second line segment</param>
+        /// <returns>True if they intersect</returns>
+        public static bool Intersect(Point a1, Point a2, Point b1, Point b2)
         {
             if (a1.X >= a2.X)
-                Utils.Swap(ref a1, ref a2);
+                Swap(ref a1, ref a2);
             if (b1.X >= b2.X)
-                Utils.Swap(ref b1, ref b2);
+                Swap(ref b1, ref b2);
             int v1 = Math.Sign((long)(b2.X - b1.X) * (a1.Y - b1.Y) -
                      (long)(b2.Y - b1.Y) * (a1.X - b1.X));
 

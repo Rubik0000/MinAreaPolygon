@@ -53,7 +53,7 @@ namespace MinArea
         /// <param name="ed2"></param>
         /// <returns>True if they intersect or false if they don't</returns>
         public static bool Intersect(Edge ed1, Edge ed2) =>
-            Utils.Interect(ed1.P1, ed1.P2, ed2.P1, ed2.P2);
+            Utils.Intersect(ed1.P1, ed1.P2, ed2.P1, ed2.P2);
 
         /// <summary>
         /// Overload
