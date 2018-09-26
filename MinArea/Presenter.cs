@@ -15,38 +15,51 @@ namespace MinArea
     {
         // min number of tops
         private static readonly int MIN_COUNT = 3;
+
         // max number of tops
         private static readonly int MAX_COUNT = 10;
+
         // the color of the figure
         private static Color _color = Color.Black;
+
         // point size in px
         private static int _pointSize = 3;
+
         // the font family of a point letter
         private static string _fontFamily = "Arial";
+
         // the font size of a point letter
         private static int _fontSize = 10;
+
         // 
         private static Pen _pen = new Pen(_color);
+
         //
         private static Font _font = new Font(_fontFamily, _fontSize);
 
+
         // the set of the names of the tops 
         private string[] _pointNames;
+
         // the index of the current name of the top
         private int _pNamesInd = 0;
+
         // the flag whether a figure was drawn
         private bool _wasDrawn = false;
+
         // the component to draw figures
         private Graphics _graphics;
+
         // random generator
         private Random _random = new Random();
+
         // main form (view)
         private IMainForm _mainForm;
-        //
+        
         private IPolygonActions _polAct;
 
         /// <summary>
-        /// 
+        /// A constructor
         /// </summary>
         /// <param name="form"></param>
         /// <param name="polAct"></param>
@@ -116,7 +129,7 @@ namespace MinArea
         {
             if (_polAct.CountTops() == MAX_COUNT)
             {
-                Messages.ShowWarning("Невозможно добавить больше точек");
+                Messages.ShowWarning("It is impossible to add more points");
                 return;
             }
             if (_wasDrawn)
@@ -143,8 +156,7 @@ namespace MinArea
         {
             if (_polAct.CountTops() < MIN_COUNT)
             {
-                Messages.ShowWarning("Для построения многоугольника " +
-                    "необходимо минимум 3 точки");
+                Messages.ShowWarning("You need minimum 3 points");
                 return;
             }
             var minPol = _polAct.GetMinAreaPolygon();
@@ -156,7 +168,7 @@ namespace MinArea
             }
             else
             {
-                Messages.ShowError("Невозможно построить многоугольник");
+                Messages.ShowError("It is impossible to get a polygon");
             }
         }
 

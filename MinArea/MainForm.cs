@@ -19,9 +19,9 @@ namespace MinArea
         IntPtr ForGraphics { get; }
 
         /// <summary>
-        /// Sets polygon area
+        /// Sets polygon's area
         /// </summary>
-        /// <param name="area">A area</param>
+        /// <param name="area">An area</param>
         void SetArea(int area);
 
         /// <summary>Background color of the workspace</summary>
@@ -36,7 +36,7 @@ namespace MinArea
         /// <summary>The height of the workspace in px</summary>
         int WorkSpaceHeight { get; }
 
-        /// <summary>A event to add point</summary>
+        /// <summary>An event to add point</summary>
         event MouseEventHandler AddPoint;
 
         /// <summary>An event to get random points</summary>
@@ -45,10 +45,10 @@ namespace MinArea
         /// <summary>An event to create a polygon</summary>
         event EventHandler GetPolygon;
 
-        /// <summary>An event to clear thw workspace</summary>
+        /// <summary>An event to clear the workspace</summary>
         event EventHandler Clear;
 
-        /// <summary>AN event to get help</summary>
+        /// <summary>An event to get help</summary>
         event EventHandler Help;
     }
 
@@ -57,6 +57,9 @@ namespace MinArea
     /// </summary>
     public partial class MainForm : Form, IMainForm
     {
+        /// <summary>
+        /// A Constructor
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
@@ -81,10 +84,19 @@ namespace MinArea
         /// <summary>Overload</summary>
         public int WorkSpaceHeight => pctrBxMain.Height;
 
+        /// <summary>Overload</summary>
         public event MouseEventHandler AddPoint;
+
+        /// <summary>Overload</summary>
         public event EventHandler GetPolygon;
+
+        /// <summary>Overload</summary>
         public event EventHandler Clear;
+
+        /// <summary>Overload</summary>
         public event EventHandler Help;
+
+        /// <summary>Overload</summary>
         public event EventHandler RandomPoints;
 
         /// <summary>Overload</summary>
@@ -92,7 +104,7 @@ namespace MinArea
             txtBxArea.Text = area.ToString();
        
         /// <summary>
-        /// Click on the workspace
+        /// A Click on the workspace
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -103,7 +115,7 @@ namespace MinArea
         }
 
         /// <summary>
-        /// Click on the button to create polygon
+        /// A Click on the button to create polygon
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -111,7 +123,7 @@ namespace MinArea
             GetPolygon?.Invoke(sender, e);
 
         /// <summary>
-        /// Click on the button to clear the workspace
+        /// A Click on the button to clear the workspace
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -119,7 +131,7 @@ namespace MinArea
             Clear?.Invoke(sender, e);
 
         /// <summary>
-        /// Click on the button ot get help
+        /// A Click on the button ot get help
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -127,7 +139,7 @@ namespace MinArea
             Help?.Invoke(sender, e);
 
         /// <summary>
-        /// Click on the button to get random tops
+        /// A Click on the button to get random tops
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -135,7 +147,7 @@ namespace MinArea
             RandomPoints?.Invoke(sender, e);
 
         /// <summary>
-        /// The hot key
+        /// The hot key "enter" to get a polygon
         /// </summary>
         /// <param name="msg"></param>
         /// <param name="keyData"></param>

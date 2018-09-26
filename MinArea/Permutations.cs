@@ -13,7 +13,7 @@ namespace MinArea
     public interface IPermutations<T>
     {
         /// <summary>
-        /// Generates a n! of permutations from given set and
+        /// Generates N! of permutations from given set and
         /// for every permutation calls a callback function
         /// </summary>
         /// <param name="set">
@@ -32,28 +32,27 @@ namespace MinArea
     public class Permutations<T> : IPermutations<T>
     {
         private T[] _set;
-        private Action<T[]> _callback;
+        private Action<T[]> _callback = null;
 
-        /// <summary>
-        /// Override
-        /// </summary>
+        /// <summary>Override</summary>
         public void Generate(T[] set, Action<T[]> callback)
         {
-            _set = set;
+            _set = new T[set.Length];
+            set.CopyTo(_set, 0);
             _callback = callback;
             GenerateRec(0, _set.Length);
         }
 
         /// <summary>
-        /// generates an permutations recursivly
+        /// Generates permutations recursivly
         /// </summary>
-        /// <param name="k">from which index to start</param>
-        /// <param name="n">count</param>
+        /// <param name="k">From which index to start</param>
+        /// <param name="n">The count</param>
         private void GenerateRec(int k, int n)
         {
             if (k == n)
             {
-                _callback(_set);
+                _callback?.Invoke(_set);
             }
             else
             {

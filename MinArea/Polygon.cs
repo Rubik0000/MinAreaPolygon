@@ -8,17 +8,24 @@ using System.Drawing;
 namespace MinArea
 {
     /// <summary>
-    /// Represents an polygon
+    /// Represents a polygon
     /// </summary>
     public class Polygon : IDrawable
     {
+        /// <summary>The set of edges</summary>
         private Edge[] _edges;
+
+        /// <summary>The set of tops</summary>
         private Point[] _tops;
 
+        /// <summary>
+        /// A close constructor
+        /// Objects are created with a factory method
+        /// </summary>
         protected Polygon() {}
 
         /// <summary>
-        /// A factory method that creates an polygon if it is possible
+        /// The factory method that creates an polygon if it is possible
         /// and returns null if it is not
         /// </summary>
         /// <param name="tops">
@@ -38,6 +45,7 @@ namespace MinArea
             polygon._edges[tops.Length - 1] = 
                 new Edge(tops[tops.Length - 1], tops[0]);
 
+            //veryfying on intersecting
             for (int i = 0; i < polygon._edges.Length; ++i)
             {
                 for (int j = 0; j < polygon._edges.Length; ++j)
@@ -52,9 +60,7 @@ namespace MinArea
             return polygon;
         }
 
-        /// <summary>
-        /// Overload
-        /// </summary>
+        /// <summary>Overload</summary>
         public void Draw(Graphics grp, Pen pen)
         {
             foreach(var ed in _edges)

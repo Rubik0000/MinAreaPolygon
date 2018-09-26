@@ -55,9 +55,7 @@ namespace MinArea
         public static bool Intersect(Edge ed1, Edge ed2) =>
             Utils.Intersect(ed1.P1, ed1.P2, ed2.P1, ed2.P2);
 
-        /// <summary>
-        /// Overload
-        /// </summary>     
+        /// <summary>Overload</summary>     
         public void Draw(Graphics grp, Pen pen) =>
             grp.DrawLine(pen, P1, P2);
     }

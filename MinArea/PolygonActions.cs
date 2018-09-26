@@ -53,7 +53,7 @@ namespace MinArea
 
     public class PolygonActions : IPolygonActions
     {
-        // the seg of tops
+        ///<summary>The set of tops</summary>
         private LinkedList<Point> _setOfTops;
 
         /// <summary>
@@ -65,9 +65,9 @@ namespace MinArea
         }
 
         /// <summary>
-        /// 
+        /// Gets points form a collection
         /// </summary>
-        /// <param name="col">A collection of the tops</param>
+        /// <param name="col">The collection of the tops</param>
         public PolygonActions(IEnumerable<Point> col)
         {
             _setOfTops = new LinkedList<Point>(col);
@@ -99,7 +99,7 @@ namespace MinArea
             int minArea = int.MaxValue;
             Polygon minPol = null;
             permutations.Generate(perm, way => {
-                Array.Copy(perm, 0, polTops, 1, perm.Length);
+                Array.Copy(way, 0, polTops, 1, way.Length);
                 var polygon = Polygon.CreatePolygon(polTops);
                 if (polygon == null) return;
                 int area = polygon.GetArea();

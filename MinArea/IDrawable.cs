@@ -13,10 +13,10 @@ namespace MinArea
     public interface IDrawable
     {
         /// <summary>
-        /// Draws the objecr
+        /// Draws the object
         /// </summary>
         /// <param name="grp">A graphcis component</param>
-        /// <param name="pen">A pen</param>
+        /// <param name="pen">A pen to draw</param>
         void Draw(Graphics grp, Pen pen);
     }
 }
