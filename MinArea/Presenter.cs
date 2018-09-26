@@ -71,14 +71,27 @@ namespace MinArea
             _mainForm.Help += HelpEvent;
         }
 
+        /// <summary>
+        /// Event handler to get help
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HelpEvent(object sender, EventArgs e)
         {
-            Messages.ShowMessage(
-                "ЛКМ - установка вершины\r\n" +
-                "При нажатии на кнопку \"Найти многоуг.\" будет построен" +
-                "многоугольник с минимальной площадью");
+            Messages.ShowMessage("A left-click is used to put a top " +
+                "on the surface.\n\r" +
+                "To get a polygon with a minimal area press the button" +
+                "\"Get polygon\".\n\r" +
+                "It is also posible to put points randomly" +
+                "press the button \"Random points\".\n\r" +
+                "To clear the surface press \"Clear\".");
         }
 
+        /// <summary>
+        /// Event handler to generate random points
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RandomPointsEvent(object sender, EventArgs e)
         {
             if (_mainForm.CountRandomPoints > MAX_COUNT)
@@ -94,6 +107,11 @@ namespace MinArea
             }
         }
 
+        /// <summary>
+        /// Event handler to add a point
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddPointEvent(object sender, MouseEventArgs e)
         {
             if (_polAct.CountTops() == MAX_COUNT)
@@ -116,6 +134,11 @@ namespace MinArea
             ++_pNamesInd;
         }
 
+        /// <summary>
+        /// Event handler to get a polygon with minimal area
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GetPolygonEvent(object sender, EventArgs e)
         {
             if (_polAct.CountTops() < MIN_COUNT)
@@ -137,12 +160,20 @@ namespace MinArea
             }
         }
 
+        /// <summary>
+        /// Event handler to delete points
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClearEvent(object sender, EventArgs e)
         {
             _polAct.ClearTops();
             ClearWorkSpace();
         }
 
+        /// <summary>
+        /// Clears the surface
+        /// </summary>
         private void ClearWorkSpace()
         {
             _graphics.Clear(_mainForm.Background);
@@ -151,6 +182,11 @@ namespace MinArea
             _pNamesInd = 0;
         }
 
+        /// <summary>
+        /// Draw a given point on the current graphics
+        /// </summary>
+        /// <param name="p">The point it is need to draw</param>
+        /// <param name="pen">A pen to draw</param>
         private void DrawPoint(Point p, Pen pen)
         {
             _graphics.DrawEllipse(pen, p.X, p.Y, _pointSize, _pointSize);

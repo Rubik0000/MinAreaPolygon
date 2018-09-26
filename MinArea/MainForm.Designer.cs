@@ -57,7 +57,7 @@
             this.btnFindPolygon.Name = "btnFindPolygon";
             this.btnFindPolygon.Size = new System.Drawing.Size(122, 23);
             this.btnFindPolygon.TabIndex = 1;
-            this.btnFindPolygon.Text = "Найти многоуг.";
+            this.btnFindPolygon.Text = "Get polygon";
             this.btnFindPolygon.UseVisualStyleBackColor = true;
             this.btnFindPolygon.Click += new System.EventHandler(this.btnFindPolygon_Click);
             // 
@@ -67,7 +67,7 @@
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(122, 23);
             this.btnHelp.TabIndex = 2;
-            this.btnHelp.Text = "Помощь";
+            this.btnHelp.Text = "Help";
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
@@ -84,9 +84,9 @@
             this.lblArea.AutoSize = true;
             this.lblArea.Location = new System.Drawing.Point(542, 52);
             this.lblArea.Name = "lblArea";
-            this.lblArea.Size = new System.Drawing.Size(57, 13);
+            this.lblArea.Size = new System.Drawing.Size(32, 13);
             this.lblArea.TabIndex = 4;
-            this.lblArea.Text = "Площадь:";
+            this.lblArea.Text = "Area:";
             // 
             // btnRandom
             // 
@@ -94,7 +94,7 @@
             this.btnRandom.Name = "btnRandom";
             this.btnRandom.Size = new System.Drawing.Size(122, 23);
             this.btnRandom.TabIndex = 5;
-            this.btnRandom.Text = "Случайные точки";
+            this.btnRandom.Text = "Random points";
             this.btnRandom.UseVisualStyleBackColor = true;
             this.btnRandom.Click += new System.EventHandler(this.btnRandom_Click);
             // 
@@ -126,7 +126,7 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(122, 23);
             this.btnClear.TabIndex = 7;
-            this.btnClear.Text = "Очистить";
+            this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
@@ -135,9 +135,9 @@
             this.lblCountRandTops.AutoSize = true;
             this.lblCountRandTops.Location = new System.Drawing.Point(545, 141);
             this.lblCountRandTops.Name = "lblCountRandTops";
-            this.lblCountRandTops.Size = new System.Drawing.Size(91, 13);
+            this.lblCountRandTops.Size = new System.Drawing.Size(122, 13);
             this.lblCountRandTops.TabIndex = 8;
-            this.lblCountRandTops.Text = "Кол. случ. точек:";
+            this.lblCountRandTops.Text = "The num. of rand. points";
             // 
             // MainForm
             // 

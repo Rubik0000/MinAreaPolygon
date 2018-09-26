@@ -7,29 +7,29 @@ using System.Windows.Forms;
 
 namespace MinArea
 {
-    //класс "Сообщения"
+    /// <summary>
+    /// User messages
+    /// </summary>
     class Messages
     {
         static public void ShowMessage(string mess)
         {
-            MessageBox.Show(mess, "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(mess, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         static public void ShowError(string mess)
         {
-            MessageBox.Show(mess, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(mess, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         static public void ShowWarning(string mess)
         {
-            MessageBox.Show(mess, "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(mess, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         static public DialogResult InputQuery(string mess)
         {
-            return MessageBox.Show(mess, "Вопрос", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            return MessageBox.Show(mess, "Question", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
         }
-
-
     }
 }
