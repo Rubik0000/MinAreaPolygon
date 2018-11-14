@@ -1,0 +1,9 @@
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\bin\Release\MinArea.exe.config
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\bin\Release\MinArea.exe
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\bin\Release\MinArea.pdb
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\obj\Release\MinArea.MainForm.resources
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\obj\Release\MinArea.Properties.Resources.resources
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\obj\Release\MinArea.csproj.GenerateResource.Cache
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\obj\Release\MinArea.csproj.CoreCompileInputs.cache
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\obj\Release\MinArea.exe
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\obj\Release\MinArea.pdb

@@ -1,0 +1,20 @@
+D:\Google disc\Универ\ТеорВер\MinArea\MinArea\bin\Debug\MinArea.exe.config
+D:\Google disc\Универ\ТеорВер\MinArea\MinArea\bin\Debug\MinArea.exe
+D:\Google disc\Универ\ТеорВер\MinArea\MinArea\bin\Debug\MinArea.pdb
+D:\Google disc\Универ\ТеорВер\MinArea\MinArea\obj\Debug\MinArea.csprojResolveAssemblyReference.cache
+D:\Google disc\Универ\ТеорВер\MinArea\MinArea\obj\Debug\MinArea.mainForm.resources
+D:\Google disc\Универ\ТеорВер\MinArea\MinArea\obj\Debug\MinArea.Properties.Resources.resources
+D:\Google disc\Универ\ТеорВер\MinArea\MinArea\obj\Debug\MinArea.csproj.GenerateResource.Cache
+D:\Google disc\Универ\ТеорВер\MinArea\MinArea\obj\Debug\MinArea.csproj.CoreCompileInputs.cache
+D:\Google disc\Универ\ТеорВер\MinArea\MinArea\obj\Debug\MinArea.exe
+D:\Google disc\Универ\ТеорВер\MinArea\MinArea\obj\Debug\MinArea.pdb
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\bin\Debug\MinArea.exe.config
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\bin\Debug\MinArea.exe
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\bin\Debug\MinArea.pdb
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\obj\Debug\MinArea.csprojResolveAssemblyReference.cache
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\obj\Debug\MinArea.MainForm.resources
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\obj\Debug\MinArea.Properties.Resources.resources
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\obj\Debug\MinArea.csproj.GenerateResource.Cache
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\obj\Debug\MinArea.csproj.CoreCompileInputs.cache
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\obj\Debug\MinArea.exe
+D:\Google disc\Универ\Теор вер\MinArea\MinArea\obj\Debug\MinArea.pdb
